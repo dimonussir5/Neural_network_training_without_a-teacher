@@ -28,14 +28,14 @@ if __name__ == '__main__':
     train_data, test_data, train_targets, test_targets = train_test_split(data, targets, test_size=0.3, random_state=42)
 
     step_boost = 10  # Шаг увеличения количества эпох
-    max_epochs = 50000  # Максимальное количество эпох
+    max_epochs = 10  # Максимальное количество эпох
     max_accuracy = 1.0  # Максимальная точность
     combine_epochs_array = []  # Массив для хранения эпох всех запусков
     combine_accuracy_array = []  # Массив для хранения точности всех запусков
-    decay_array = ['hill', 'linear']  # Массив для хранения способов затухания
+    decay_array = ['hill']  # Массив для хранения способов затухания
     for decay in decay_array:
-        epochs = 10  # Начальное количество эпох
-        epohc_step = 0  # Шаг увеличения количества эпох
+        epochs = 0  # Начальное количество эпох
+        epohc_step = 10  # Шаг увеличения количества эпох
         accuracy = 0.0  # Начальная точность
         epochs_array = []  # Массив для хранения эпох текущего запуска
         accuracy_array = []  # Массив для хранения точности текущего запуска
@@ -70,10 +70,10 @@ if __name__ == '__main__':
         combine_epochs_array.append(epochs_array)
         
         # Создание графика точности в зависимости от количества эпох
-        create_accuracy_graph(epochs_array, accuracy_array, "epochs", decay, decay)
+      #  create_accuracy_graph(epochs_array, accuracy_array, "epochs", decay, decay)
         # Создание графиков SOM
         create_graphs(som, train_data, train_targets, class_names, decay)
         
     # Создание графика с перекрывающимися кривыми точности
-    create_overlapping_graphs(combine_epochs_array[0], combine_accuracy_array[0], decay_array[0], combine_epochs_array[1], combine_accuracy_array[1], decay_array[1], path="", for_name="epochs")
+    #create_overlapping_graphs(combine_epochs_array[0], combine_accuracy_array[0], decay_array[0], combine_epochs_array[1], combine_accuracy_array[1], decay_array[1], path="", for_name="epochs")
 
